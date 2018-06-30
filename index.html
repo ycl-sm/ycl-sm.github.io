@@ -1,7 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="referrer" content="no-referrer" />
 	<meta charset="UTF-8">
 	<meta name="Keywords" content="关键词 关键字">
 	<meta name="Description" content="描述信息">
@@ -12,8 +12,8 @@
 	canvas{background: #fff; margin: 90px auto;display: block;box-shadow: 0px 0px 10px #000}/*上下 左右 模糊度 颜色*/
 	  html{
             overflow: scroll!important;
-        }
-	   embed{margin: 0px 900px;}
+        }  /*让页面可以滚动*/
+	   embed{margin: 0px 900px;}   /*插件的位置*/
 
 
 	body{background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528604230411&di=561667163e0f8031bb33355d48528fa1&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F17%2F93%2F57%2F90N58PICjQs_1024.jpg);}/*background-size: cover;*/
@@ -26,12 +26,12 @@
 <embed src="http://music.163.com/style/swf/widget.swf?sid=445886994&type=2&auto=0&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
 <canvas width="450" height="450" id="canvas" onclick="oclick(event)"></canvas>
 <script type="text/javascript">
-	var chess=document.getElementById("canvas");
-	var clear=chess.getContext("2d");
+	var chess=document.getElementById("canvas"); 	//获取画板
+	var clear=chess.getContext("2d"); 				//获取画笔
 	clear.strokeStyle="#8c8c8c";
 
 	var logo=new Image();
-	logo.src="http://img.netbian.com/file/2018/0307/d2f719f974e3dbead502c29af9948b4a.jpg";		//绘制棋盘的背景图片 先绘制 否则棋盘会被挡住
+	logo.src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530332907454&di=2c4ba20cd10997d44135a1a8e84aedd7&imgtype=jpg&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D2896378587%2C1313451127%26fm%3D214%26gp%3D0.jpg";		//绘制棋盘的背景图片 先绘制 否则棋盘会被挡住
 	logo.onload=function() {
 	   clear.drawImage(logo,0,0,450,450);
 	   drawline();
@@ -371,7 +371,7 @@
 					location.reload();//刷新当前页面
 		}
 		else{
-					  location.replace("https://mp.csdn.net//postlist")//刷新去到一个网站
+					  location.replace("https://github.com/ycl-sm/ycl-sm.github.io")//刷新去到一个网站
 		}
 	} 
 	var hakes=function(){ //弹出游戏对话框
@@ -380,7 +380,7 @@
 					location.reload();
 		}
 		else{
-					  location.replace("https://mp.csdn.net//postlist")
+					  location.replace("https://github.com/ycl-sm/ycl-sm.github.io")
 		}
 	} 
 
