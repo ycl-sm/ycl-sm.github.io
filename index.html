@@ -9,11 +9,21 @@
 	<title>人工智能五子棋</title>
     <style type="text/css">
     *{margin: 0;}     /*解决浏览器兼容问题 吧外边距设置为0 每个元素之间的距离*/
-	canvas{background: #fff; margin: 90px auto;display: block;box-shadow: 0px 0px 10px #000}/*上下 左右 模糊度 颜色*/
+	canvas{background: #fff; margin: 0px auto;display: block;box-shadow: 0px 0px 10px #000}/*上下 左右 模糊度 颜色*/
 	  html{
             overflow: scroll!important;
         }  /*让页面可以滚动*/
 	   embed{margin: 0px 900px;}   /*插件的位置*/
+	
+#no{
+    width:100px;
+    padding:10px;     /*内边距 上右下左都是1px*/
+    background-color:#32CD32;   /*背景颜色*/
+    border:1px solid black;  /*边框*/
+    border-radius:8px; /*圆角边框*/
+    cursor:pointer; 
+    margin: 0px 1050px;
+	} 
 
 
 	body{background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1528604230411&di=561667163e0f8031bb33355d48528fa1&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F17%2F93%2F57%2F90N58PICjQs_1024.jpg);}/*background-size: cover;*/
@@ -24,6 +34,9 @@
 </head>
 <body>
 <embed src="http://music.163.com/style/swf/widget.swf?sid=445886994&type=2&auto=0&width=320&height=66" width="340" height="86"  allowNetworking="all"></embed>
+
+<button type="button" onclick="chongkai()" id="no">重开</button>
+
 <canvas width="450" height="450" id="canvas" onclick="oclick(event)"></canvas>
 <script type="text/javascript">
 	var chess=document.getElementById("canvas"); 	//获取画板
@@ -66,8 +79,6 @@
 	var count=0;
 	var wins=[];
 	var winff=function(){
-    //var wins=[];
-    //var count=0;
     	for(var i=0;i<15;i++){
     		wins[i]=[];
     		for(var j=0;j<15;j++){					//初始化赢棋所有方法的数组
@@ -121,9 +132,10 @@
 	function oclick(event){       //玩家下子
 		var x=event.offsetX;//clientX窗口   offsetX容器   screenX用戶屏幕
 		var y=event.offsetY;
-		// console.log("x="+x+"y="+y);
 		var i=Math.floor(x/30)
 		var j=Math.floor(y/30)
+		K=i;
+		S=j;
 		if(chessbord[i][j]==0)
 		{
 			if(A==0){
@@ -134,13 +146,14 @@
 			me=!me;
 		}
 		if(A==1){
+			A=0;
 			AI();//电脑下棋
 			win(); //判断电脑有没有赢
-			A=0;
+			
 		}	
 		}
 	}
-
+		
 	var AI=function(){  //电脑AI算法  
 	var myScore = [];    //玩家的权值
     var computerScore = []; //电脑的权值   权值越大的位置说明价值越大
@@ -275,15 +288,15 @@
                		}
             else if(myScore[i][j] == max) {
 
-               if(computerScore[i][j] > computerScore[u][v]) {
+                if(computerScore[i][j] > computerScore[u][v]) {  //如果两个分数一样下在分数高的地方对自己有利
 
                   u = i;
 
                   v = j;
 
                }
-           }
-            if(computerScore[i][j] > max) {
+           } 
+            if(computerScore[i][j] > max) {           //如果两个分数一样下在分数高的地方对自己有利
 
                max =computerScore[i][j];
 
@@ -312,6 +325,7 @@
 			chessbord[u][v]=1;
 			me=!me;
    	}
+
   
 	var win =function(){         //赢的所有情况
 		for(var i=0;i<=10;i++){
@@ -365,6 +379,11 @@
 		}
 	
 }
+										// 重开的方法
+ 	var chongkai=function(){
+ 	location.reload();//刷新当前页面
+ 	}
+
 	var hakey=function(){ //弹出游戏对话框
 		var con=confirm("电脑获胜  游戏结束！是否再来一盘");
 		if(con==true){
@@ -386,13 +405,13 @@
 
 	var drawarc =function(i,j,me){       //繪製棋子
 		if(me==true){
-		var g=clear.createRadialGradient(15+i*30,15+j*30,0,15+i*30,15+j*30,13);
+		var g=clear.createRadialGradient(15+i*30,15+j*30,0,15+i*30,15+j*30,13);//创建渐变色
 		g.addColorStop(0,"#636766");
 		g.addColorStop(1,"#0a0a0a");
 		clear.fillStyle=g;//黑色
 	}
 		else{
-		var g=clear.createRadialGradient(15+i*30,15+j*30,0,15+i*30,15+j*30,13);
+		var g=clear.createRadialGradient(15+i*30,15+j*30,0,15+i*30,15+j*30,13);//创建渐变色
 		g.addColorStop(0,"#f9f9f9");
 		g.addColorStop(1,"#d1d1d1");
 		clear.fillStyle=g;//白色
@@ -403,9 +422,9 @@
 		clear.closePath();
 
 	}
-	window.onload=function(){
-	}
-	// 頁面加載完成自動啟動
+	// window.onload=function(){
+	// }
+	// // 頁面加載完成自動啟動
 </script>
 
 </body>
